@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stampa</title>
+</head>
+<body>
+        <div id="cont"></div>
+        <script>
+            let par;
+            let co = document.getElementById("cont");
+            let s = JSON.parse(localStorage.getItem("elenco"));
+
+            for(i=0;i<s.length;i++){
+                par = document.createElement("p");
+                par.textContent = JSON.stringify(s[i]);
+                co.appendChild(par)
+            }
+
+        </script>
+
+    </body>
+</html>
