@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+
+    <title>Anagrafica Utente</title>
+   
+</head>
+
+<body>
+    <h2>Inserisci Anagrafica Utente</h2>
+    <form id="anagraficaForm">
+        <div class="container">
+            <div>
+                <label>Nome:</label><br>
+                <input type="text" id="nome" required>
+            </div>
+
+            <div>
+                <label>Cognome:</label><br>
+                <input type="text" id="cognome" required>
+            </div>
+
+            <div>
+                <label>Indirizzo:</label><br>
+                <input type="text" id="indirizzo" required>
+            </div>
+
+            <div>
+                <label>Città:</label><br>
+                <input type="text" id="citta" required>
+            </div>
+
+            <div>
+                <label>CAP:</label><br>
+                <input type="text" id="cap" required>
+            </div>
+
+            <div>
+                <label>Provincia:</label><br>
+                <select name="provincia">
+                    <option value="milano">milano</option>
+                    <option value="novara">novara</option>
+                    <option value="monza">monza</option>
+                </select>
+            </div>
+
+            <div>
+                <label>sesso:</label><br>
+                <input type="radio" name="sesso" value="maschio">
+                <label for="rosso">maschio</label><br>
+                <input type="radio" name="sesso" value="femmina">
+                <label for="verde">femmina</label><br>
+                <input type="radio" name="sesso" value="altro">
+                <label for="blu">altro</label><br>
+            </div>
+
+            <div>
+                <label>Data di nascita:</label><br>
+                <input type="date" id="dataNascita" required>
+            </div>
+
+            <div>
+                <label>mezzo di trasporto:</label><br>
+
+                <label for="vehicle1"> ho un auto</label>
+                <input type="checkbox" id="box1" name="auto" value="auto"
+                    onclick="onClickHandler(document.getElementById('box1').value)"><br>
+
+                <label for="vehicle2"> ho una bici</label>
+                <input type="checkbox" id="box2" name="bici" value="bici"
+                    onclick="onClickHandler(document.getElementById('box2').value)"><br>
+
+
+                <label for="vehicle3"> ho un cavallo</label>
+                <input type="checkbox" id="box3" name="cavallo" value="cavallo"
+                    onclick="onClickHandler(document.getElementById('box3').value)"><br>
+            </div>
+
+            <div>
+                <select name="materie_preferite" id="materie" multiple>
+                    <option value="motoria">motoria</option>
+                    <option value="storia">storia</option>
+                    <option value="inglese">inglese</option>
+                </select>
+            </div>
+
+        </div>
+
+        <a href="stampa.html">Stampa</a><br>
+
+        <button type="button" onclick="calcolaGenerazione()" style="margin-top:30px">Invia</button>
+    </form>
+
+    <div class="output" id="risultato"></div>
+
+    <script>
+
+        let elenco = [];
+
+        function calcolaGenerazione() {
+            let dataNascita = document.getElementById('dataNascita').value;
+
+            let persona = {
+                nome: document.getElementById('nome').value,
+                cognome: document.getElementById('cognome').value,
+                indirizzo: document.getElementById('indirizzo').value,
+                citta: document.getElementById('citta').value,
+                cap: document.getElementById('cap').value,
+                dataNascita: dataNascita,
+                sesso: document.querySelector('input[name="sesso"]:checked'),
+                mezzi: document.querySelectorAll('input[type="checkbox"]:checked'),
+                provincia: document.querySelector('select[name="provincia"]').value,
+                anno: new Date(dataNascita).getFullYear(),
+                eta: new Date().getFullYear() - new Date(dataNascita).getFullYear(),
+            }
+
+
+            let mezziSelezionati = [];
+            persona.mezzi.forEach(checkbox => {
+                mezziSelezionati.push(checkbox.value);
+            });
+            let outputMezzi = mezziSelezionati.join();
+            let sessosel = persona.sesso.value;
+
+            let generazione = '';
+            if (persona.anno >= 1901 && persona.anno <= 1927) generazione = "Greatest Generation";
+            else if (persona.anno >= 1928 && persona.anno <= 1945) generazione = "Generazione Silenziosa";
+            else if (persona.anno >= 1946 && persona.anno <= 1964) generazione = "Baby Boomers";
+            else if (persona.anno >= 1965 && persona.anno <= 1980) generazione = "Generazione X";
+            else if (persona.anno >= 1981 && persona.anno <= 1996) generazione = "Millennials";
+            else if (persona.anno >= 1997 && persona.anno <= 2012) generazione = "Generazione Z";
+            else if (persona.anno >= 2013) generazione = "Generazione Alpha";
+            else generazione = "Anno non valido";
+
+
+            persona[generazione] = generazione;
+
+            document.getElementById('outnome').innerHTML = persona.nome;
+            document.getElementById('outcognome').innerHTML = persona.cognome;
+            document.getElementById('outindirizzo').innerHTML = persona.indirizzo;
+            document.getElementById('outcitta').innerHTML = persona.citta;
+            document.getElementById('outcap').innerHTML = persona.cap;
+            document.getElementById('outdatanascita').innerHTML = persona.dataNascita;
+            document.getElementById('outsesso').innerHTML = sessosel;
+            document.getElementById('outprovincia').innerHTML = persona.provincia;
+            document.getElementById('outmezzi').innerHTML = outputMezzi;
+
+
+           elenco.push(persona);
+           localStorage.setItem("elenco", JSON.stringify(elenco));
+        }
+    </script>
+    <div id="outnome"></div>
+    <div id="outcognome"></div>
+    <div id="outindirizzo"></div>
+    <div id="outcitta"></div>
+    <div id="outcap"></div>
+    <div id="outdatanascita"></div>
+    <div id="outsesso"></div>
+    <div id="outmezzi"></div>
+    <div id="outprovincia"></div>
+</body>
+
+</html>
