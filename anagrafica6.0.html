@@ -3,7 +3,7 @@
     <head>
         <title>anagrafica6.0</title>
         <script>
-            function verifica(){
+            function controllaDati(){
                 let person = {};
                 person.nome=document.getElementById("nome").value;
                 const nomeregex = /^[A-Za-zÀ-ÖØ-öø-ÿ' ]+$/;
@@ -68,7 +68,7 @@
 
         <br>
 
-        <input type="button" value="verifica" onclick="verifica()">
+        <input type="button" value="controlla dati" onclick="controllaDati()">
     </body>
 
 </html>
