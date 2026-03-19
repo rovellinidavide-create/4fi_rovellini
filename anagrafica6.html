@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>anagrafica 6</title>
+        <script>
+            function controllaDati(){
+                let person = {};
+                person.nome=document.getElementById("nome").value;
+                const nomeregex = /^[A-Za-zÀ-ÖØ-öø-ÿ' ]+$/;
+                person.cognome=document.getElementById("cognome").value;
+                person.cap=document.getElementById("cap").value;
+                const capregex = /^\d{5}$/;
+                person.mail=document.getElementById("mail").value;
+                const mailregex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+                person.cfiscale=document.getElementById("cfiscale").value;
+                const codicefiscaleregex = /^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$/;
+                
+                
+                if (!nomeregex.test(person.nome)){
+                    document.getElementById("messaggioNome").innerHTML="il nome che hai inserito non è valido";
+                }else{
+                    document.getElementById("messaggioNome").innerHTML="";
+                }
+                if (!nomeregex.test(person.cognome)){
+                    document.getElementById("messaggioCognome").innerHTML="il cognome che hai inserito non è valido";
+                }else{
+                    document.getElementById("messaggioCognome").innerHTML="";
+                }
+                if (!capregex.test(person.cap)){
+                    document.getElementById("messaggioCap").innerHTML="il cap che hai inserito non è valido";
+                }else{
+                    document.getElementById("messaggioCap").innerHTML="";
+                }
+                if (!mailregex.test(person.mail)){
+                    document.getElementById("messaggioMail").innerHTML="l'e-mail che hai inserito non è valida";
+                }else{
+                    document.getElementById("messaggioMail").innerHTML="";
+                }
+                if (!codicefisalecregex.test(person.cfiscale)){
+                    document.getElementById("messaggioCodicefiscale").innerHTML="il codice fiscale che hai inserito non è valido";
+                }else{
+                    document.getElementById("messaggioCfisc").innerHTML="";
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <p>nome</p>
+        <input type="text" id="nome">
+        <p id="messaggioNome" style='color:red;'></p>
+
+        <p>cognome</p>
+        <input type="text" id="cognome">
+        <p id="messaggioCognome" style='color:red;'></p>
+        
+        <p>cap</p>
+        <input type="text" id="cap">
+        <p id="messaggioCap" style='color:red;'></p>
+
+        <p>mail</p>
+        <input type="text" id="mail">
+        <p id="messaggioMail" style='color:red;'></p>
+
+        <p>codice fiscale</p>
+        <input type="text" id="cfiscale">
+        <p id="messaggioCfisc" style='color:red;'></p>
+
+        <br>
+
+        <input type="button" value="controlla dati" onclick="controllaDati()">
+    </body>
+
+</html>
+
