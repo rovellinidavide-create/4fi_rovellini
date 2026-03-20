@@ -4,39 +4,39 @@
         <title>anagrafica 6</title>
         <script>
             function controllaDati(){
-                let person = {};
-                person.nome=document.getElementById("nome").value;
+                
+                let nome=document.getElementById("nome").value;
                 const nomeregex = /^[A-Za-zÀ-ÖØ-öø-ÿ' ]+$/;
-                person.cognome=document.getElementById("cognome").value;
-                person.cap=document.getElementById("cap").value;
+                let cognome=document.getElementById("cognome").value;
+                let cap=document.getElementById("cap").value;
                 const capregex = /^\d{5}$/;
-                person.mail=document.getElementById("mail").value;
+                let mail=document.getElementById("mail").value;
                 const mailregex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-                person.cfiscale=document.getElementById("cfiscale").value;
+                let cfiscale=document.getElementById("cfiscale").value;
                 const codicefiscaleregex = /^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$/;
                 
                 
-                if (!nomeregex.test(person.nome)){
+                if (!nomeregex.test(nome)){
                     document.getElementById("messaggioNome").innerHTML="il nome che hai inserito non è valido";
                 }else{
                     document.getElementById("messaggioNome").innerHTML="";
                 }
-                if (!nomeregex.test(person.cognome)){
+                if (!nomeregex.test(cognome)){
                     document.getElementById("messaggioCognome").innerHTML="il cognome che hai inserito non è valido";
                 }else{
                     document.getElementById("messaggioCognome").innerHTML="";
                 }
-                if (!capregex.test(person.cap)){
+                if (!capregex.test(cap)){
                     document.getElementById("messaggioCap").innerHTML="il cap che hai inserito non è valido";
                 }else{
                     document.getElementById("messaggioCap").innerHTML="";
                 }
-                if (!mailregex.test(person.mail)){
+                if (!mailregex.test(mail)){
                     document.getElementById("messaggioMail").innerHTML="l'e-mail che hai inserito non è valida";
                 }else{
                     document.getElementById("messaggioMail").innerHTML="";
                 }
-                if (!codicefisalecregex.test(person.cfiscale)){
+                if (!codicefisalecregex.test(cfiscale)){
                     document.getElementById("messaggioCodicefiscale").innerHTML="il codice fiscale che hai inserito non è valido";
                 }else{
                     document.getElementById("messaggioCodicefiscale").innerHTML="";
